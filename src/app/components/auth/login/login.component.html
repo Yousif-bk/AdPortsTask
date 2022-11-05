@@ -1,0 +1,23 @@
+<div class="container py-5 py-sm-7">
+  <div class="mx-auto" style="max-width: 30rem;">
+    <!-- Card -->
+    <div class="card card-lg mb-5">
+      <div class="card-body">
+        <!-- Form -->
+        <form [formGroup]="loginFormGroup">
+          <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input type="email" formControlName="emailCtrl" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" formControlName="passwordCtrl" class="form-control">
+          </div>
+          <button (click)="login()" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <!-- End Form -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>

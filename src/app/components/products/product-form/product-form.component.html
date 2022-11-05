@@ -1,0 +1,42 @@
+<div class="container py-5 py-sm-7">
+  <div class="mx-auto" style="max-width: 50rem;">
+    <!-- Card -->
+    <div class="card card-lg mb-5">
+      <div class="card-header">
+        Add Product
+      </div>
+      <div class="card-body">
+        <!-- Form -->
+        <form [formGroup]="productFormGroup">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label class="form-label">Product Name</label>
+              <input type="text" formControlName="productName" class="form-control">
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label">Price</label>
+              <input type="text" formControlName="price" class="form-control">
+            </div>
+          </div>
+          <div class=" mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" formControlName="description" class="form-control">
+          </div>
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label class="form-label">Rating</label>
+              <input type="text" formControlName="emailCtrl" class="form-control">
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label">Product Code</label>
+              <input type="text" formControlName="productCode" class="form-control">
+            </div>
+          </div>
+          <button type="submit" (click)="createProduct()" class="btn btn-primary">Submit</button>
+        </form>
+        <!-- End Form -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
