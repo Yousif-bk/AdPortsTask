@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { ContentLayoutComponent } from './shared/components/content-layout/content-layout.component';
 import { AppRoutes } from './shared/models/AppRoutes';
 import { content } from './shared/routes/content-routes';
 
@@ -13,7 +14,12 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: AppComponent,
+    redirectTo: AppRoutes.products.full,
+    pathMatch: "full"
+ },
+  {
+    path: "",
+    component: ContentLayoutComponent,
     children: content,
     // canActivate: [AuthGuard]
   },

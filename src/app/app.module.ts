@@ -4,18 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './components/auth/auth.module';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

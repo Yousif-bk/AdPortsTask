@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginReq } from 'src/app/shared/models/LoginReq';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.initForms();
   }
+
   initForms() {
     // Construct login form
     this.loginFormGroup = this.formBuilder.group({
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
    });
   }
 
+  get f():{[key: string]: AbstractControl } { return this.loginFormGroup.controls; }
 
   login(): void {
 

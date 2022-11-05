@@ -1,11 +1,11 @@
-<nav class="py-2 bg-light border-bottom">
+<nav class="py-2 bg-light border-bottom shadow-sm p-3 mb-5 bg-white rounded">
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
-      <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Products</a></li>
-      <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Add Product</a></li>
+      <li class="nav-item"><a href="#" [routerLink]="'/products'" class="nav-link link-dark px-2 active" aria-current="page">Products</a></li>
+      <li class="nav-item"><a href="#" [routerLink]="'/products/new'"  class="nav-link link-dark px-2 active" aria-current="page">Add Product</a></li>
     </ul>
     <ul class="nav">
-      <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Login</a></li>
+      <li class="nav-item"><a href="#" [routerLink]="'/login'"  class="nav-link link-dark px-2">Login</a></li>
     </ul>
   </div>
 </nav>

@@ -1,17 +1,34 @@
 <div class="container py-5 py-sm-7">
   <div class="mx-auto" style="max-width: 30rem;">
     <!-- Card -->
-    <div class="card card-lg mb-5">
+    <h5>Login</h5>
+    <div class="card card-lg mb-5 shadow-sm p-3 mb-5 bg-white rounded">
+      <h5>Login</h5>
       <div class="card-body">
         <!-- Form -->
         <form [formGroup]="loginFormGroup">
           <div class="mb-3">
             <label class="form-label">Email address</label>
             <input type="email" formControlName="emailCtrl" class="form-control">
+             <!-- Validation Errors -->
+             <div *ngIf="f['emailCtrl'].errors">
+              <div *ngIf="(uiState.login.isSubmitting  && f['emailCtrl'].errors['required']) || (f['emailCtrl'].touched && f['emailCtrl'].errors['required'])">
+                <span class="v-message">This field is required</span>
+                <span class="v-message" *ngIf="f['emailCtrl'].errors['pattern']">
+                  dkfjdkf
+               </span>
+              </div>
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" formControlName="passwordCtrl" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['passwordCtrl'].errors">
+                <div *ngIf="(uiState.login.isSubmitting  && f['passwordCtrl'].errors['required']) || (f['passwordCtrl'].touched && f['passwordCtrl'].errors['required'])">
+                  <span class="v-message">This field is required</span>
+                </div>
+              </div>
           </div>
           <button (click)="login()" type="submit" class="btn btn-primary">Submit</button>
         </form>

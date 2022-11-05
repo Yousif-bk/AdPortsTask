@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/shared/services/app/products.service';
 
 @Component({
@@ -32,11 +32,12 @@ export class ProductFormComponent implements OnInit {
       productName: [null, [Validators.required]],
       productCode: [null, [Validators.required]],
       price: [null, [Validators.required]],
-      description: [null],
+      description: [null,[Validators.required]],
       rating: [null,[Validators.required]]
     });
   }
 
+  get f():{[key: string]: AbstractControl } { return this.productFormGroup.controls; }
 
   createProduct() {
     this.uiState.createProductData.isLoading = true;

@@ -1,38 +1,89 @@
 <div class="container py-5 py-sm-7">
   <div class="mx-auto" style="max-width: 50rem;">
     <!-- Card -->
-    <div class="card card-lg mb-5">
-      <div class="card-header">
+    <div class="card card-lg mb-5 shadow-sm p-3 mb-5 bg-white rounded">
+      <div class="">
         Add Product
       </div>
       <div class="card-body">
         <!-- Form -->
         <form [formGroup]="productFormGroup">
           <div class="row">
-            <div class="col-6 mb-3">
+            <div class="form-group col-6 mb-3">
               <label class="form-label">Product Name</label>
               <input type="text" formControlName="productName" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['productName'].errors">
+                <div
+                  *ngIf="(uiState.isSubmitting && f['productName'].errors['required']) || (f['productName'].touched && f['productName'].errors['required'])">
+                  <span class="v-message">This field is required</span>
+                </div>
+              </div>
             </div>
-            <div class="col-6 mb-3">
+
+
+            <div class="form-group col-6 mb-3">
               <label class="form-label">Price</label>
               <input type="text" formControlName="price" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['price'].errors">
+                <div *ngIf="(uiState.isSubmitting && f['price'].errors['required']) || (f['price'].touched && f['price'].errors['required'])">
+                  <span class="v-message">This field is required</span>
+                </div>
+              </div>
             </div>
+
           </div>
-          <div class=" mb-3">
+
+          <div class="form-group col-12 mb-3">
             <label class="form-label">Description</label>
             <input type="text" formControlName="description" class="form-control">
-          </div>
-          <div class="row">
-            <div class="col-6 mb-3">
-              <label class="form-label">Rating</label>
-              <input type="text" formControlName="emailCtrl" class="form-control">
+            <!-- Validation Errors -->
+            <div *ngIf="f['description'].errors">
+              <div *ngIf="(uiState.isSubmitting && f['description'].errors['required']) || (f['description'].touched && f['description'].errors['required'])">
+                <span class="v-message">This field is required</span>
+              </div>
             </div>
-            <div class="col-6 mb-3">
+          </div>
+
+
+          <div class="row">
+            <div class="form-group col-6 mb-3">
+              <label class="form-label">Rating</label>
+              <input type="text" formControlName="rating" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['rating'].errors">
+                <div
+                  *ngIf="(uiState.isSubmitting && f['rating'].errors['required']) || (f['rating'].touched && f['rating'].errors['required'])"
+                   >
+                  <span class="v-message">This field is required</span>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Product Code -->
+            <div class="form-group col-6 mb-3">
               <label class="form-label">Product Code</label>
               <input type="text" formControlName="productCode" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['productCode'].errors">
+                <div
+                  *ngIf="(uiState.isSubmitting && f['productCode'].errors['required']) || (f['productCode'].touched && f['productCode'].errors['required'])"
+                   >
+                  <span class="v-message">This field is required</span>
+                </div>
+              </div>
             </div>
           </div>
-          <button type="submit" (click)="createProduct()" class="btn btn-primary">Submit</button>
+
+
+          <button type="submit" (click)="createProduct()" class="btn btn-primary">
+            <span>Create</span>
+            <div *ngIf="uiState.createProductData.isLoading" class="spinner-grow spinner-grow-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </button>
         </form>
         <!-- End Form -->
       </div>
