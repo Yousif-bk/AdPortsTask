@@ -13,7 +13,7 @@ import { LoginReq } from '../../models/LoginReq';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = "https://localhost:5021/api/";
+  private apiUrl = "https://localhost:5020/api/";
   jwtHelper = new JwtHelperService();
   isLoggedIn = new BehaviorSubject<boolean>(this.isTokenAvailable());
 
