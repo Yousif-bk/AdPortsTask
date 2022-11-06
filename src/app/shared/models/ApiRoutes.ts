@@ -4,9 +4,10 @@ export const ApiRoutes = {
      Login: 'account/login',
   },
   product: {
-    search: 'product/search',
-    update: 'product/update/',
-    create: 'product/create',
-    detail: 'product/detail/'
+    getProdects: 'product/getProdects',
+    edit: 'product/edit/',
+    create: 'product/add',
+    detail: 'product/getProdect/',
+    delete: 'product/remove/'
   }
 }

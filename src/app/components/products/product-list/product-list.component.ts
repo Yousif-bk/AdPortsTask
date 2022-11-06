@@ -36,7 +36,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
   }
 
-
+  deleteProduct(productId: any){
+    this.productsService.DeleteProducts(productId).subscribe({
+      next: product => {
+        console.log(product)
+      },
+      error: err => this.errorMessage = err
+    })
+  }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }

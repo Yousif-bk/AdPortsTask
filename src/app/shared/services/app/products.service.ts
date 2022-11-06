@@ -13,7 +13,7 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.apiUrl + ApiRoutes.product.search)
+    return this.http.get<IProduct[]>(this.apiUrl + ApiRoutes.product.getProdects)
       .pipe(
         tap(data => console.log('All: ', JSON.stringify(data))),
       );
@@ -29,6 +29,10 @@ export class ProductsService {
 
 
   updateProducts(product: IProduct,productId: string) {
-    return this.http.put(this.apiUrl + ApiRoutes.product.update + productId, product);
+    return this.http.put(this.apiUrl + ApiRoutes.product.edit + productId, product);
+  }
+
+  DeleteProducts(productId: string) {
+    return this.http.delete(this.apiUrl + ApiRoutes.product.delete + productId);
   }
 }
