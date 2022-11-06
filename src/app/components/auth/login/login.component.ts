@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/models/AppRoutes';
 import { LoginReq } from 'src/app/shared/models/LoginReq';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
@@ -15,15 +17,16 @@ export class LoginComponent implements OnInit {
     login: {
       isLoading: false,
       isSubmitting: false,
-   },
+    },
   }
 
 
- /* Forms */
- loginFormGroup: FormGroup;
+  /* Forms */
+  loginFormGroup: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -35,10 +38,10 @@ export class LoginComponent implements OnInit {
     this.loginFormGroup = this.formBuilder.group({
       emailCtrl: [null, Validators.compose([Validators.required, Validators.pattern(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)])],
       passwordCtrl: [null, Validators.required]
-   });
+    });
   }
 
-  get f():{[key: string]: AbstractControl } { return this.loginFormGroup.controls; }
+  get f(): { [key: string]: AbstractControl } { return this.loginFormGroup.controls; }
 
   login(): void {
 
@@ -50,33 +53,33 @@ export class LoginComponent implements OnInit {
 
     // Validate form
     if (this.loginFormGroup.invalid) {
-       this.uiState.login.isLoading = false;
-       return;
+      this.uiState.login.isLoading = false;
+      return;
     }
 
-    console.log("Group Value", this.loginFormGroup.value)
 
     // Construct login data
     let loginReq: LoginReq = {
-       username: this.loginFormGroup.get("emailCtrl")?.value,
-       password: this.loginFormGroup.get("passwordCtrl")?.value,
+      email: this.loginFormGroup.get("emailCtrl")?.value,
+      password: this.loginFormGroup.get("passwordCtrl")?.value,
     };
 
     // Send login request
-    this.authService.login(loginReq).subscribe(
-       (res) => {
-          this.uiState.login.isLoading = false;
-          this.uiState.login.isSubmitting = false;
-       },
-       (err) => {
-          // Stop the loader
-          this.uiState.login.isLoading = false;
-          this.uiState.login.isSubmitting = false;
+    this.authService.login(loginReq).subscribe({
+      next: res => {
+        this.uiState.login.isLoading = false;
+        this.uiState.login.isSubmitting = false;
+         // Navigate to home
+         this.router.navigate([AppRoutes.products.full]);
+      },
+      error: err => {
+        // Stop the loader
+        this.uiState.login.isLoading = false;
+        this.uiState.login.isSubmitting = false;
+      }
+    })
 
-          // Display error alert
 
-       }
-    );
- }
+  }
 
 }

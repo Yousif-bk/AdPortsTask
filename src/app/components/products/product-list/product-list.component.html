@@ -11,19 +11,20 @@
               <tr>
                 <th>Product</th>
                 <th>Code</th>
-                <th>Availabe</th>
                 <th>description</th>
                 <th>Price</th>
                 <th>5 star Rating</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor=' let product of products'>
                 <td>{{product.productName}}</td>
                 <td>{{product.productCode }}</td>
-                <td>{{product.releaseDate}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.price  | currency: 'USD':'symbol':'1.2-2'}}</td>
+                <td>{{product.rating}}</td>
+                <td><button [routerLink]="['/products/edit/', product.id]" routerLinkActive="router-link-active"  class="btn btn-outline-primary">Edit</button></td>
               </tr>
             </tbody>
           </table>

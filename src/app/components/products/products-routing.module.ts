@@ -20,7 +20,7 @@ const routes: Routes = [
         },
         {
           path: AppRoutes.products.edit.main,
-          component: ProductListComponent
+          component: ProductFormComponent
        },
      ],
   },

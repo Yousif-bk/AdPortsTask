@@ -15,7 +15,7 @@
               <div *ngIf="(uiState.login.isSubmitting  && f['emailCtrl'].errors['required']) || (f['emailCtrl'].touched && f['emailCtrl'].errors['required'])">
                 <span class="v-message">This field is required</span>
                 <span class="v-message" *ngIf="f['emailCtrl'].errors['pattern']">
-                  dkfjdkf
+                  Invalid Email
                </span>
               </div>
             </div>
@@ -30,7 +30,10 @@
                 </div>
               </div>
           </div>
-          <button (click)="login()" type="submit" class="btn btn-primary">Submit</button>
+          <button (click)="login()" type="submit" class="btn btn-primary">
+            <span *ngIf="!uiState.login.isLoading">Submit</span>
+            <div *ngIf="uiState.login.isLoading" class="spinner-grow spinner-grow-sm" role="status"></div>
+          </button>
         </form>
         <!-- End Form -->
       </div>

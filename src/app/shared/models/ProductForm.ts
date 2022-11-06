@@ -1,8 +1,7 @@
-export interface IProduct{
+export interface ProductForm{
   id: number;
   productName: string;
   productCode: string;
-  releaseDate: string;
   price: number;
   description: string;
   rating: number;

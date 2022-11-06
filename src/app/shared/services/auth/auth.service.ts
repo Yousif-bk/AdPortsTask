@@ -13,7 +13,7 @@ import { LoginReq } from '../../models/LoginReq';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = "https://localhost:5021/api/";
   jwtHelper = new JwtHelperService();
   isLoggedIn = new BehaviorSubject<boolean>(this.isTokenAvailable());
 
@@ -24,19 +24,12 @@ export class AuthService {
   login(loginReq: LoginReq): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.Auth.Login, loginReq).pipe(
       tap((res: any) => {
-        if (res.isSuccess) {
-
+          console.log("resss", res.token)
           // Save access token on local storage
-          localStorage.setItem(LocallyStoredItemsKeys.JWT, res.accessToken);
+          localStorage.setItem(LocallyStoredItemsKeys.JWT, res.token);
 
           // Set authenticated user flag
           this.setIsLoggedIn(true);
-
-          // Navigate to home
-          this.router.navigate([AppRoutes.products.full]);
-
-
-        }
       })
     );
   }

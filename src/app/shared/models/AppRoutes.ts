@@ -15,7 +15,7 @@ export const AppRoutes = {
   main: "products",
   sub: "",
   details: {
-     full: "products/",
+     full: "products",
      main: ":id",
   },
   new: {
@@ -24,7 +24,7 @@ export const AppRoutes = {
      sub: ""
   },
   edit: {
-    full: "clients/edit/",
+    full: "products/edit/",
     main: "edit/:id",
     sub: ":id"
  }

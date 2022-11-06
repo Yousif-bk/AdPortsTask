@@ -5,8 +5,8 @@ export const ApiRoutes = {
   },
   product: {
     search: 'product/search',
-    details: 'product/details/',
-    update: 'product/update',
+    update: 'product/update/',
     create: 'product/create',
+    detail: 'product/detail/'
   }
 }

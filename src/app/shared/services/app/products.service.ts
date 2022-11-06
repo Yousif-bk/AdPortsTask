@@ -19,12 +19,16 @@ export class ProductsService {
       );
   }
 
+  getProductDetails(productId: string): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(this.apiUrl + ApiRoutes.product.detail + productId);
+  }
+
   createProducts(product: IProduct) {
     return this.http.post(this.apiUrl + ApiRoutes.product.create, product);
   }
 
 
-  updateProducts(product: IProduct) {
-    return this.http.post(this.apiUrl + ApiRoutes.product.update, product);
+  updateProducts(product: IProduct,productId: string) {
+    return this.http.put(this.apiUrl + ApiRoutes.product.update + productId, product);
   }
 }
