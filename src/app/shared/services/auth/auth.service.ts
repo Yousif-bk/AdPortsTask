@@ -24,10 +24,8 @@ export class AuthService {
   login(loginReq: LoginReq): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.Auth.Login, loginReq).pipe(
       tap((res: any) => {
-          console.log("resss", res.token)
           // Save access token on local storage
           localStorage.setItem(LocallyStoredItemsKeys.JWT, res.token);
-
           // Set authenticated user flag
           this.setIsLoggedIn(true);
       })
@@ -35,17 +33,12 @@ export class AuthService {
   }
 
   async logout(): Promise<any> {
-
     // Clear JWT from localstorage
-    /*  await localStorage.removeItem(LocallyStoredItemsKeys.JWT); */
     await localStorage.clear();
-
     // Update logged in status
     this.setIsLoggedIn(false);
-
     // Navigate user back to login page
     await this.router.navigate([AppRoutes.Auth.login.full]);
-
   }
   private isTokenAvailable(): boolean {
     return !!localStorage.getItem(LocallyStoredItemsKeys.JWT);
@@ -55,13 +48,7 @@ export class AuthService {
     this.isLoggedIn.next(isLoggedIn);
   }
 
-
-
-
   getIsLoggedIn(): BehaviorSubject<boolean> {
     return this.isLoggedIn;
   }
-
-
-
 }

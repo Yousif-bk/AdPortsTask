@@ -9,6 +9,7 @@
         <!-- Form -->
         <form [formGroup]="productFormGroup">
           <div class="row">
+            <!-- Product Name Control -->
             <div class="form-group col-6 mb-3">
               <label class="form-label">Product Name</label>
               <input type="text" formControlName="productName" class="form-control">
@@ -21,32 +22,34 @@
               </div>
             </div>
 
-
+            <!-- Price Control -->
             <div class="form-group col-6 mb-3">
               <label class="form-label">Price</label>
               <input type="text" formControlName="price" class="form-control">
               <!-- Validation Errors -->
               <div *ngIf="f['price'].errors">
-                <div *ngIf="(uiState.isSubmitting && f['price'].errors['required']) || (f['price'].touched && f['price'].errors['required'])">
+                <div
+                  *ngIf="(uiState.isSubmitting && f['price'].errors['required']) || (f['price'].touched && f['price'].errors['required'])">
                   <span class="v-message">This field is required</span>
                 </div>
               </div>
             </div>
-
           </div>
 
+          <!-- Description Control -->
           <div class="form-group col-12 mb-3">
             <label class="form-label">Description</label>
             <input type="text" formControlName="description" class="form-control">
             <!-- Validation Errors -->
             <div *ngIf="f['description'].errors">
-              <div *ngIf="(uiState.isSubmitting && f['description'].errors['required']) || (f['description'].touched && f['description'].errors['required'])">
+              <div
+                *ngIf="(uiState.isSubmitting && f['description'].errors['required']) || (f['description'].touched && f['description'].errors['required'])">
                 <span class="v-message">This field is required</span>
               </div>
             </div>
           </div>
 
-
+          <!-- Rating Control -->
           <div class="row">
             <div class="form-group col-6 mb-3">
               <label class="form-label">Rating</label>
@@ -54,30 +57,28 @@
               <!-- Validation Errors -->
               <div *ngIf="f['rating'].errors">
                 <div
-                  *ngIf="(uiState.isSubmitting && f['rating'].errors['required']) || (f['rating'].touched && f['rating'].errors['required'])"
-                   >
+                  *ngIf="(uiState.isSubmitting && f['rating'].errors['required']) || (f['rating'].touched && f['rating'].errors['required'])">
                   <span class="v-message">This field is required</span>
                 </div>
               </div>
             </div>
 
 
-            <!-- Product Code -->
+            <!-- Product Code Control -->
             <div class="form-group col-6 mb-3">
               <label class="form-label">Product Code</label>
               <input type="text" formControlName="productCode" class="form-control">
               <!-- Validation Errors -->
               <div *ngIf="f['productCode'].errors">
                 <div
-                  *ngIf="(uiState.isSubmitting && f['productCode'].errors['required']) || (f['productCode'].touched && f['productCode'].errors['required'])"
-                   >
+                  *ngIf="(uiState.isSubmitting && f['productCode'].errors['required']) || (f['productCode'].touched && f['productCode'].errors['required'])">
                   <span class="v-message">This field is required</span>
                 </div>
               </div>
             </div>
           </div>
 
-
+          <!-- OnSummit Button -->
           <button type="submit" (click)="onSummit()" class="btn btn-primary">
             <span>Create</span>
             <div *ngIf="uiState.createProductData.isLoading" class="spinner-grow spinner-grow-sm" role="status">

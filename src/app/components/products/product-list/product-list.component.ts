@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/shared/models/IProduct';
 import { ProductsService } from 'src/app/shared/services/app/products.service';
@@ -17,8 +16,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
 
   constructor(private productsService: ProductsService,
-    private router: Router
-    ) { }
+  ) { }
 
 
   ngOnInit(): void {
@@ -26,17 +24,18 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
 
+  // Get All Products
   getProducts() {
     this.sub = this.productsService.getProducts().subscribe({
       next: products => {
         this.products = products;
-        console.log("product", this.products  )
       },
       error: err => this.errorMessage = err
     });
   }
 
-  deleteProduct(productId: any){
+  // Delete Produt
+  deleteProduct(productId: any) {
     this.productsService.DeleteProducts(productId).subscribe({
       next: product => {
         console.log(product)
@@ -44,6 +43,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
       error: err => this.errorMessage = err
     })
   }
+
+  // unsubscribe when component destroy
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }

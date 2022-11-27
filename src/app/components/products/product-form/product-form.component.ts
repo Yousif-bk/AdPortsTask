@@ -32,13 +32,13 @@ export class ProductFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
     private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.initForms();
     this.getProductDetails();
   }
+
   initForms() {
     this.productFormGroup = this.formBuilder.group({
       productName: [null, [Validators.required]],
@@ -49,8 +49,10 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
+  // Form Controls
   get f(): { [key: string]: AbstractControl } { return this.productFormGroup.controls; }
 
+  // Get product details
   getProductDetails() {
     const productId = this.router.url.split('/products/edit/')[1];
     if (productId) {
@@ -63,6 +65,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  // Set product data to form
   private setSavedProductData(savedProduct: any): void {
     // Consturct form patch data
     const patchData: ProductForm = {
@@ -74,9 +77,9 @@ export class ProductFormComponent implements OnInit {
       rating: savedProduct.rating
     }    // Patch the form data
     this.productFormGroup.patchValue(patchData);
-
-
   }
+
+  // On Summit product
   onSummit() {
     this.uiState.createProductData.isLoading = true;
     this.uiState.isSubmitting = true;
@@ -86,36 +89,32 @@ export class ProductFormComponent implements OnInit {
       this.uiState.createProductData.isLoading = false;
       return;
     }
-
     if (productId) {
-      this.productsService.updateProducts(this.productFormGroup.value,productId).subscribe({
+      this.productsService.updateProducts(this.productFormGroup.value, productId).subscribe({
         next: res => {
-          console.log("res", res);
           this.uiState.createProductData.isLoading = false;
           this.uiState.isSubmitting = false;
           this.router.navigate([AppRoutes.products.full]);
         },
-        error: res => {
+        error: error => {
           // Stop the loader
           this.uiState.createProductData.isLoading = false;
           this.uiState.isSubmitting = false;
         }
       })
     } else {
-      this.productsService.createProducts(this.productFormGroup.value).subscribe(
-        (res) => {
-          console.log("ressss", res);
+      this.productsService.createProducts(this.productFormGroup.value).subscribe({
+        next: res => {
           this.uiState.createProductData.isLoading = false;
           this.uiState.isSubmitting = false;
           this.router.navigate([AppRoutes.products.full]);
         },
-        (err) => {
+        error: error => {
           // Stop the loader
           this.uiState.createProductData.isLoading = false;
           this.uiState.isSubmitting = false;
         }
-      );
+      })
     }
-
   }
 }
